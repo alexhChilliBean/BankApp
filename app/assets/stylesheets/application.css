@@ -17,7 +17,7 @@
  
 
  nav {
-     background-color: #C3A8F4;
+     background-color: white;
      margin: none;
  }
 
@@ -26,5 +26,7 @@
  }
 
  .link {
+     color: indigo;
+     text-decoration: none;
      margin-right: 5%;
  }
