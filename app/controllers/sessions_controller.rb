@@ -4,11 +4,11 @@ class SessionsController < ApplicationController
 
         if !!@user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirdct_to user_path
+            redirect_to user_path(@user)
         else
             message = "Incorrect username or password"
             redirect_to login_path, notice: message
         end
     end
-    
+
 end
