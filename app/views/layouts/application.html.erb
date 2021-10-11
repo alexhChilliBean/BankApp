@@ -39,7 +39,24 @@
     </nav>
  
   
-  <body>
-    <%= yield %>
+  <body> 
+    <% flash.each do |type, msg| %>  
+        <% if type == "notice" %>
+          <div class="alert alert-info">    
+            <%= msg %>  
+          </div>
+        <% elsif type == "error" %>
+          <% flash[:error].each do |error| %>
+            <div class="alert alert-danger">    
+              <%= error %>  
+            </div>
+          <% end %>
+        <% elsif type == "success"%>
+          <div class="alert alert-success">
+            <%= msg %>
+          </div>
+        <% end %>
+      <% end %>
+      <%= yield %>
   </body>
 </html>
