@@ -1,0 +1,13 @@
+body {
+    background-image: none;
+    background-color: #C3A8F4;
+    
+}
+.welcome {
+    font-size: 45px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 4px indigo;
+    color: white;
+    margin-left: 5%;
+}

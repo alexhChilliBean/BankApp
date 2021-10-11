@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -32,13 +31,17 @@
       </button>
       <div class="collapse navbar-collapse" id="toggleMobileMenu">
         <ul class="navbar-nav ms-auto text-center">
-          <li class="nav-link">
+          
             <% if session[:user_id] %>
-              <%= link_to "Logout", logout_url, method:"delete", class:"link"%>
+              <li class="nav-link">
+                <%= link_to "Logout", logout_url, method:"delete", class:"link"%>
+              </li>
             <% else %>
-              <%= link_to "Login", login_url, class:"link" %>
+              <li class="nav-link">
+                <%= link_to "Login", login_url, class:"link" %>
+              </li>
             <% end %>
-          </li>
+          
         </ul>
       </div>
     </nav>
@@ -51,11 +54,9 @@
             <%= msg %>  
           </div>
         <% elsif type == "error" %>
-          <% flash[:error].each do |error| %>
             <div class="alert alert-danger">    
-              <%= error %>  
+              <%= msg %>  
             </div>
-          <% end %>
         <% elsif type == "success"%>
           <div class="alert alert-success">
             <%= msg %>
