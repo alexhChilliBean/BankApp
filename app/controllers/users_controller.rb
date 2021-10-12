@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+    
+    before_action :check_login
+    before_action :check_user
+
     def new
         @user = User.new
     end
@@ -22,6 +26,22 @@ class UsersController < ApplicationController
     private
     def user_params
         params.require(:user).permit(:username, :password, :first_name, :last_name)
+    end
+
+    def check_login
+        unless helpers.logged_in?
+            redirect_to login_path
+        end           
+    end
+
+    def check_user
+        logger.warn "*"*100
+        logger.warn helpers.current_user.id
+        logger.warn params[:id]
+        logger.warn "*"*100
+        unless helpers.current_user.id == params[:id].to_i
+            redirect_to unauthorised_url
+        end
     end
 
 end

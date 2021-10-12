@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#index'
 
+  get 'unauthorised' => 'pages#unauthorised'
   #Users routes
   resources :users, only: [:new, :create, :edit, :update, :show]
 
