@@ -35,10 +35,6 @@ class UsersController < ApplicationController
     end
 
     def check_user
-        logger.warn "*"*100
-        logger.warn helpers.current_user.id
-        logger.warn params[:id]
-        logger.warn "*"*100
         unless helpers.current_user.id == params[:id].to_i
             redirect_to unauthorised_url
         end
