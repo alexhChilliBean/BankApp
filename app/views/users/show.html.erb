@@ -1,4 +1,47 @@
 <%= stylesheet_link_tag 'show' %>
 <div class="welcome">
-    Hi <%= @user.first_name%>!
+    <%= @user.first_name%> <%= @user.last_name%>
+</div>
+</br>
+</br>
+</br>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-4">
+        <div class ="card" style="widith: 18rem;">
+            <div class="card-title">
+                <h4>Account Info</h4>
+            </div>
+            <div class="card-body">
+                <p>Account Info</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-4">
+        <div class ="card" style="widith: 18rem;">
+            <div class="card-title">
+                <h4>Make a payment</h4>
+            </div>
+            <div class="card-body">
+                <p>Make a payment</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class ="card" style="widith: 18rem;">
+            <div class="card-title">
+                <h4>View Transactions</h4>
+            </div>
+            <div class="card-body">
+                <p>Recent Transactions</p>
+            </div>
+        </div>
+    </div>
 </div>

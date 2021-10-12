@@ -9,7 +9,7 @@ body {
         background: linear-gradient(to right, rgba(190, 144, 212,1), rgba(241, 231, 254, 1))
 }
  
-h1 {
+.error {
     left: 0;
     line-height: 200px;
     margin-top: -170px;
@@ -24,7 +24,7 @@ h1 {
     text-shadow: 1px 4px indigo;
     color: white;
 }
-h4 {
+.no_access {
     left: 0;
     line-height: 200px;
     margin-top: -70px;
