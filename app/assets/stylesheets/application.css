@@ -26,7 +26,10 @@
  }
 
  .link {
-     color: indigo;
+     font-weight: bold;
+     font-size: 20pt;
+     font-family: 'Monterrat', Helvetica ;
+     color: purple;
      text-decoration: none;
-     margin-right: 5%;
+     padding-right: 20px;
  }

@@ -16,8 +16,8 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a href="#" class="navbar-brand">
-       <%= image_tag "pig_logo.svg", alt:"Logo", width:100 , height:80, class:"d-inline-block align-top" %>
+      <a href="/" class="navbar-brand">
+       <%= image_tag "pig_logo.svg", alt:"Logo", width:100 , height:60, class:"d-inline-block align-top" %>
       </a>
       <button
         class="navbar-toggler"
@@ -32,13 +32,36 @@
       </button>
       <div class="collapse navbar-collapse" id="toggleMobileMenu">
         <ul class="navbar-nav ms-auto text-center">
-          <li class="nav-link"><%= link_to "Login", "", class:"link" %></li>
+          <li class="nav-link">
+            <% if session[:user_id] %>
+              <%= link_to "Logout", logout_url, method:"delete", class:"link"%>
+            <% else %>
+              <%= link_to "Login", login_url, class:"link" %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </nav>
  
   
-  <body>
-    <%= yield %>
+  <body> 
+    <% flash.each do |type, msg| %>  
+        <% if type == "notice" %>
+          <div class="alert alert-info">    
+            <%= msg %>  
+          </div>
+        <% elsif type == "error" %>
+          <% flash[:error].each do |error| %>
+            <div class="alert alert-danger">    
+              <%= error %>  
+            </div>
+          <% end %>
+        <% elsif type == "success"%>
+          <div class="alert alert-success">
+            <%= msg %>
+          </div>
+        <% end %>
+      <% end %>
+      <%= yield %>
   </body>
 </html>
