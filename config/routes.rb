@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get 'unauthorised' => 'pages#unauthorised'
   #Users routes
-  resources :users, only: [:new, :create, :edit, :update, :show]
+  resources :users do
+    resources :accounts
+  end
 
   #Session routes
   get '/login', to: 'sessions#login'

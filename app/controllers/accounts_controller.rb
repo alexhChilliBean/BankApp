@@ -18,4 +18,3 @@ class AccountsController < ApplicationController
     end
 
 end
-s

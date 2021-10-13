@@ -10,22 +10,14 @@
               <br>
               <%= form_for [@user, @account] do |account| %>
               <div class="form-outline form-white mb-4">
-                <%= f.text_field :username, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">Username </label>
+                <%= account.text_field :account_name, class:"form-control form-control-lg", required: true%>
+                <label class="form-label">Account Name</label>
               </div>
               <div class="form-outline form-white mb-4">
-                <%= f.text_field :first_name, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">First name </label>
+                <%= account.number_field :balance, class:"form-control form-control-lg", required: true%>
+                <label class="form-label">Balance </label>
               </div>
-              <div class="form-outline form-white mb-4">
-                <%= f.text_field :last_name, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">Surname </label>
-              </div>
-              <div class="form-outline form-white mb-4">
-                <%= f.password_field :password, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">Password</label>
-              </div>
-                <%= f.submit "Create Account", class:"btn btn-outline-light btn-lg px-5" %>
+              <%= account.submit "Open Account", class:"btn btn-outline-light btn-lg px-5" %>
             </div>
             <div>
             </div>
