@@ -6,10 +6,22 @@ class AccountsController < ApplicationController
     end
 
     def create
+        userID = params[:user_id]
+        @account = Account.new(account_params)
+        @account.user_id = userID
+        @account.account_no = rand(1..999999)
+        if @account.save
+            flash[:success] = "New Account Opened"
+            return redirect_to user_url(@user.id)
+        else
+            flash[:error] = @account.errors.full_messages
+            render 'new'
+        end
     end
 
     private
     def account_params
+        params.require(:account).permit(:balance, :account_name, :user_id)
     end
 
     private
