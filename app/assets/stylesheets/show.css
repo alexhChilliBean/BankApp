@@ -1,13 +1,24 @@
 body {
     background-image: none;
-    background-color: #C0A2CF;
+    background-color: #AB83BF;
     
 }
-.welcome {
-    font-size: 45px;
+.user {
+    font-size: 35px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     text-shadow: 1px 4px indigo;
     color: white;
     margin-left: 5%;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.card-body {
+    text-align: justify;
 }
