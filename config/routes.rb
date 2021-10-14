@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'unauthorised' => 'pages#unauthorised'
   #Users routes
   resources :users do
-    resources :accounts
+    resources :transactions
+    resources :accounts 
   end
 
   #Session routes
