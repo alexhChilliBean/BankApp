@@ -10,13 +10,16 @@
     <div class="col-4">
         <div class ="card" style="widith: 18rem;">
             <div class="card-title">
-                <h4>Accounts</h4>
+                <h4 class="title">Accounts</h4>
             </div>
             <% @accounts.each do |account| %>
-            <div class="card-body">
-                <h5> <%= account.account_name%> </h5>
-                <h5> Balance:<%= number_to_currency(account.balance, unit: "£")%> </h5>
-                <h5> Account No: <%= account.account_no %> </h5>
+                <div class="card-body">
+                    <h5 class="actname"> <%= account.account_name%> </h5>
+                    <h5 class="actbal"> Balance:  </h5> <h5 class="actbal2"><%= number_to_currency(account.balance, unit: "£")%></h5>
+                    </br></br>
+                    <h5 class="actno"> Account No: </h5> <h5 class="actno2"> <%= account.account_no %> </h5>
+                    </br></br>
+                    <h6 class="partition"> qwertqwertys </h6>
             </div>
             <% end %>
         </div>
