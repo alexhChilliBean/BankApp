@@ -14,8 +14,8 @@
             </div>
             <% @accounts.each do |account| %>
             <div class="card-body">
-                <h5> <%= account.account_name%>
-                <h5> Balance: £<%= account.balance %> </h5>
+                <h5> <%= account.account_name%> </h5>
+                <h5> Balance:<%= number_to_currency(account.balance, unit: "£")%> </h5>
                 <h5> Account No: <%= account.account_no %> </h5>
             </div>
             <% end %>
