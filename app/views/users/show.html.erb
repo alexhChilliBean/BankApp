@@ -1,1 +1,55 @@
-Hi <%= @user.username %> </h4>
+<%= stylesheet_link_tag 'show' %>
+<div class="user">
+    <%= @user.first_name%> <%= @user.last_name%>
+    <%= link_to "Open account", new_user_account_path(@user), class: "newact"%>
+</div>
+</br>
+</br>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-4">
+        <div class ="card" style="widith: 18rem;">
+            <div class="card-title">
+                <h4 class="title">Accounts</h4>
+            </div>
+            <% @accounts.each do |account| %>
+                <div class="card-body">
+                    <h5 class="actname"> <%= account.account_name%> </h5>
+                    </br>
+                    <h5 class="actbal"> Balance:  </h5> <h5 class="actbal2"><%= number_to_currency(account.balance, unit: "£")%></h5>
+                    </br></br>
+                    <h5 class="actno"> Account No: </h5> <h5 class="actno2"> <%= account.account_no %> </h5>
+                    </br></br>
+                    <h6 class="partition"> qwertqwertys </h6>
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-4">
+        <div class ="card" style="widith: 18rem;">
+            <div class="card-title">
+                <h4>Make a payment</h4>
+            </div>
+            <div class="card-body">
+                <p>Make a payment</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class ="card" style="widith: 18rem;">
+            <div class="card-title">
+                <h4>View Transactions</h4>
+            </div>
+            <div class="card-body">
+                <p>Recent Transactions</p>
+            </div>
+        </div>
+    </div>
+</div>

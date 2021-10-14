@@ -1,0 +1,76 @@
+body {
+    background-image: none;
+    background-color: #AB83BF;
+    
+}
+.user {
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 4px indigo;
+    color: white;
+    margin-left: 5%;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bolder;
+}
+
+.card-body {
+    text-align: justify;
+}
+
+.actname {
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:600;
+
+}
+
+.card-body {
+ }
+
+ .actbal {
+     float: left;
+ }
+ .actbal2 {
+     float: right;
+ }
+
+ .actno {
+    float: left;
+}
+.actno2 {
+    float: right;
+}
+
+.title {
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:700;
+}
+
+.partition {
+    text-align: center;
+    color: transparent;
+    margin-left: 14%;
+    margin-right: 14%;
+    border-bottom: solid 1px black;
+}
+
+.newact {
+    font-size: 16pt;
+    float: right;
+    text-decoration: none;
+    color: white;
+    margin-right: 5%;
+}
+
+.newact:hover {
+    color: black;
+    text-shadow: none;
+}
