@@ -10,7 +10,7 @@
               <br>
               <%= form_for [@user, @account] do |account| %>
               <div class="form-outline form-white mb-4">
-                <%= account.text_field :account_name, class:"form-control form-control-lg", required: true%>
+                <%= account.select :account_name, ["Savings ISA", "Current Account", "IRA"], {}, class:"form-control form-control-lg", required: true%>
                 <label class="form-label">Account Name</label>
               </div>
               <div class="form-outline form-white mb-4">

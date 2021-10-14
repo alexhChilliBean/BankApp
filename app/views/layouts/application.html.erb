@@ -33,7 +33,7 @@
         <ul class="navbar-nav ms-auto text-center">
           
             <% if session[:user_id] %>
-             <li class="nav-link">
+              <li class="nav-link">
                 <%= link_to "Account Hub", user_url(current_user.id), class:"link" %>
               </li>
               <li class="nav-link">
@@ -58,9 +58,11 @@
             <%= msg %>  
           </div>
         <% elsif type == "error" %>
+          <% flash[:error].each do |error| %>
             <div class="alert alert-danger">    
-              <%= msg %>  
+              <%= error %>  
             </div>
+          <%end%>
         <% elsif type == "success"%>
           <div class="alert alert-success">
             <%= msg %>

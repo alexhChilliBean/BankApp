@@ -56,8 +56,21 @@ body {
 
 .partition {
     text-align: center;
-    color: white;
-    margin-left: 6%;
-    margin-right: 6%;
+    color: transparent;
+    margin-left: 14%;
+    margin-right: 14%;
     border-bottom: solid 1px black;
+}
+
+.newact {
+    font-size: 16pt;
+    float: right;
+    text-decoration: none;
+    color: white;
+    margin-right: 5%;
+}
+
+.newact:hover {
+    color: black;
+    text-shadow: none;
 }
