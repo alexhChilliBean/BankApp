@@ -30,9 +30,13 @@
         <div class ="card" style="widith: 18rem;">
             <div class="card-title">
                 <h4>Make a payment</h4>
+                <%=form_with model:[@user,@transaction] do |transaction|%>
+                    <%=transaction.select(:accounts, @accounts.collect {|a| [a.account_name, a.id]}, {}) %>
+                    <%=transaction.submit%>
+                <%end%>
             </div>
             <div class="card-body">
-                <p>Make a payment</p>
+                
             </div>
         </div>
     </div>
