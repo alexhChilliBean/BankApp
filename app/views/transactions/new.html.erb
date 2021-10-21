@@ -21,10 +21,10 @@
                 <%= form_for [@user, @transaction] do |transaction| %>
                     <div class="form-outline form-white mb-4">
                         <%= transaction.text_field :receiver_name, class:"form-control form-control-lg", required: true%>
-                        <label class="form-label">User </label>
+                        <label class="form-label">Username </label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <%= transaction.text_field :receiver_act, class:"form-control form-control-lg", required: true%>
+                        <%= transaction.select :receiver_act,["Savings ISA", "Current Account", "IRA"], {}, class:"form-control form-control-lg", required: true%>
                         <label class="form-label">Account </label>
                     </div>
                     <div class="form-outline form-white mb-4">
