@@ -6,4 +6,41 @@
     reference = String defined by from_user
     -->
     <% stylesheet_link_tag 'transactions_new' %>
-    <div class="balance">Available Balance : <%= @account.balance %></div>
+    <div class="balance">Available Balance : <%= number_to_currency(@account.balance, unit: "£") %></div> 
+
+ <section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+                <h2 class="fw-bold mb-2 text-uppercase">Make a Payment</h2>
+                <br>
+                <%= form_for [@user, @transaction] do |transaction| %>
+                    <div class="form-outline form-white mb-4">
+                        <%= transaction.text_field :receiver_name, class:"form-control form-control-lg", required: true%>
+                        <label class="form-label">User </label>
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                        <%= transaction.text_field :receiver_act, class:"form-control form-control-lg", required: true%>
+                        <label class="form-label">Account </label>
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                        <%= transaction.number_field :amount, class:"form-control form-control-lg", required: true%>
+                        <label class="form-label">Amount (£) </label>
+                    </div>
+                    <div cass="form-outline form-white mb-4">
+                        <%= transaction.text_field :reference, class:"form-control form-control-lg", required: true%>
+                        <label class="form-label">Reference</label>
+                    </div>
+                    <%= transaction.submit "Send money", class:"btn btn-outline-light btn-lg px-5" %>
+                <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

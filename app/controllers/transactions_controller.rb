@@ -7,11 +7,7 @@ class TransactionsController < UsersController
     end
 
     def create
-        userID = params[:user_id]
-        @account = @user.accounts.find(params[:account_name])
         @transaction = Transaction.new(transaction_params)
-        @transaction.user_id = userID
-        @transaction.account_no = rand(1..999999)
         if @transaction.save
             flash[:success] = "New Account Opened"
             return redirect_to user_url(@user.id)
@@ -24,5 +20,10 @@ class TransactionsController < UsersController
     private
     def find_user
         @user = User.find(params[:user_id])
+    end
+
+    private
+    def transaction_params
+        params.require(:transaction).permit(:sender_id, :receiver_name, :receiver_act, :amount, :reference)
     end
 end
