@@ -3,7 +3,7 @@ class TransactionsController < UsersController
 
     def new
         @transaction = Transaction.new
-        @account = @user.accounts.find(params[:transaction][:reference])
+        @account = @user.accounts.find(params[:transaction][:sender_id])
     end
 
     def create
