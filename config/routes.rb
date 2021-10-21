@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     resources :transactions
     resources :accounts 
   end
-
   #Session routes
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'

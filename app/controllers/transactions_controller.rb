@@ -1,8 +1,9 @@
-class TransactionsController < ApplicationController
+class TransactionsController < UsersController
     before_action :find_user
 
     def new
         @transaction = Transaction.new
+        @account = @user.accounts.find(params[:transaction][:reference])
     end
 
     def create
