@@ -35,6 +35,7 @@
                         <%= transaction.text_field :reference, class:"form-control form-control-lg", required: true%>
                         <label class="form-label">Reference</label>
                     </div>
+                      <%= transaction.hidden_field :sender_id, value: @account.id %>
                     <%= transaction.submit "Send money", class:"btn btn-outline-light btn-lg px-5" %>
                 <% end %>
             </div>

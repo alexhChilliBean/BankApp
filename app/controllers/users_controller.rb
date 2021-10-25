@@ -30,6 +30,7 @@ class UsersController < ApplicationController
         redirect_to new_user_transaction(@user.id)
     end
 
+  
     private
     def user_params
         params.require(:user).permit(:username, :password, :first_name, :last_name)

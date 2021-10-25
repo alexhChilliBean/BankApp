@@ -6,32 +6,32 @@ class TransactionsController < UsersController
         @account = @user.accounts.find(params[:transaction][:sender_id])
     end
 
+
     def create
-        @user = User.find(params[:user_id])
         @transaction = Transaction.new(transaction_params)
         @account = @user.accounts.find(params[:transaction][:sender_id])
-        if User.find_by(username: :receiver_name).accounts.find_by(account_name: :receiver_act)
-            @receiver = User.find_by(username: :receiver_name)
-            @receiver_act = @receiver.accounts.find_by(account_name: :receiver_act)
-            if @account.balance >= @transaction.amount
-                if @transaction.save
+        if User.find_by(username: params[:transaction][:receiver_name])
+            @receiver = User.find_by(username: params[:transaction][:receiver_name])
+            if @receiver.accounts.find_by(account_name: params[:transaction][:receiver_act])
+                @receiver_act = @receiver.accounts.find_by(account_name: @transaction.receiver_act)
+                if @account.balance >= @transaction.amount
                     @account.balance = @account.balance - @transaction.amount
                     @receiver_act.balance = @receiver_act.balance + @transaction.amount
-                    flash[:success] = "New Account Opened"
-                    return redirect_to user_url(@user.id)
+                    @transaction.save
+                    flash[:success] = "Transaction Completed"
+                    redirect_to user_url(@user)
                 else
-                    flash[:error] = @transaction.errors.full_messages
+                    flash[:success] = "Insufficient funds"
                     render 'new'
                 end
-                
             else
-                flash[:error] = "Insufficient Funds"
+                flash[:success] = "Account must exist"
+                render 'new'
             end
-            
         else
-            flash[:error] = "Incorrect User or Account"
+            flash[:success] = "User must exist"
+            render 'new'
         end
-        
     end
 
     private
