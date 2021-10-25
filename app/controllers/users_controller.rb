@@ -23,6 +23,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @accounts = @user.accounts
         @transaction = Transaction.new
+        @transactions = Transaction.all
     end
 
     def new_transaction

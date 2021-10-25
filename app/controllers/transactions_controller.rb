@@ -41,6 +41,6 @@ class TransactionsController < UsersController
 
     private
     def transaction_params
-        params.require(:transaction).permit(:sender_id, :receiver_name, :receiver_act, :amount, :reference)
+        params.require(:transaction).permit(:sender_id, :sender_name, :receiver_name, :receiver_act, :amount, :reference)
     end
 end

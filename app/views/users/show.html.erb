@@ -52,7 +52,34 @@
                 <h4>View Transactions</h4>
             </div>
             <div class="card-body">
-                <p>Recent Transactions</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Reference</th>
+                        </tr>
+                    </thead>
+                    <% @transactions.each do  |transaction|%>
+                        <% if transaction.sender_name == @user.username%>
+                            <tr>
+                            <th scope="row"><%= transaction.sender_id %></th>
+                            <td><%= transaction.receiver_name%></th>
+                            <td><%= transaction.amount%></th>
+                            <td><%= transaction.reference%></th>
+                            </tr>
+                        <%end%>
+                        <% if transaction.receiver_name == @user.username%>
+                            <tr>
+                            <th scope="row"><%= transaction.receiver_name%></th>
+                            <td><%= transaction.sender_id %></th>
+                            <td><%= transaction.amount%></th>
+                            <td><%= transaction.reference%></th>
+                            </tr>
+                        <%end%>
+                    <%end%>
+                </table>
             </div>
         </div>
     </div>
