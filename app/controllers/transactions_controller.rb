@@ -15,11 +15,15 @@ class TransactionsController < UsersController
             if @receiver.accounts.find_by(account_name: params[:transaction][:receiver_act])
                 @receiver_act = @receiver.accounts.find_by(account_name: @transaction.receiver_act)
                 if @account.balance >= @transaction.amount
-                    @account.update(:balance => (@account.balance - @transaction.amount))
-                    @receiver_act.update(:balance => (@receiver_act.balance + @transaction.amount))
-                    @transaction.save
-                    flash[:success] = "Transaction Completed"
-                    redirect_to user_url(@user)
+                    if @transaction.save
+                        @account.update(:balance => (@account.balance - @transaction.amount))
+                        @receiver_act.update(:balance => (@receiver_act.balance + @transaction.amount))
+                        flash[:success] = "Transaction Completed"
+                        redirect_to user_url(@user)
+                    else
+                        flash[:error] = @transaction.errors.full_messages
+                        render 'new'
+                    end
                 else
                     flash[:success] = "Insufficient funds"
                     render 'new'
@@ -41,6 +45,6 @@ class TransactionsController < UsersController
 
     private
     def transaction_params
-        params.require(:transaction).permit(:sender_id, :sender_name, :receiver_name, :receiver_act, :amount, :reference)
+        params.require(:transaction).permit(:transaction_id, :accounts_id, :users_id, :sender_id, :sender_name, :receiver_name, :receiver_act, :amount, :reference)
     end
 end
