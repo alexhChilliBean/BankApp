@@ -9,10 +9,10 @@ class TransactionsController < UsersController
 
     def create
         @transaction = Transaction.new(transaction_params)
-        @account = @user.accounts.find(params[:transaction][:sender_id])
-        if User.find_by(username: params[:transaction][:receiver_name])
-            @receiver = User.find_by(username: params[:transaction][:receiver_name])
-            if @receiver.accounts.find_by(account_name: params[:transaction][:receiver_act])
+        @account = @user.accounts.find(@transaction.sender_id)
+        if User.find_by(username: @transaction.receiver_name)
+            @receiver = User.find_by(username: @transaction.receiver_name)
+            if @receiver.accounts.find_by(account_name: @transaction.receiver_act)
                 @receiver_act = @receiver.accounts.find_by(account_name: @transaction.receiver_act)
                 if @account.balance >= @transaction.amount
                     if @transaction.save
@@ -25,15 +25,15 @@ class TransactionsController < UsersController
                         render 'new'
                     end
                 else
-                    flash[:success] = "Insufficient funds"
+                    flash[:notice] = "Insufficient Funds"
                     render 'new'
                 end
             else
-                flash[:success] = "Account must exist"
+                flash[:notice] = "User does not have this account"
                 render 'new'
             end
         else
-            flash[:success] = "User must exist"
+            flash[:notice] = "User does not exist"
             render 'new'
         end
     end

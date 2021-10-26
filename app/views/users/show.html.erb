@@ -31,7 +31,7 @@
             <div class="card-title">
                 <h4>Make a payment</h4>
                 <%=form_for @transaction, url: new_user_transaction_path(@user), method: :get  do |transaction|%>
-                    <%=transaction.select(:sender_id, @accounts.collect {|a| [a.account_name, a.id]}, {}) %>
+                    <%=transaction.select(:sender_id, @accounts.collect {|a| [a.account_name, a.id]}, {}, required: true) %>
                     <%=transaction.submit%>
                 <%end%>
             </div>
@@ -52,7 +52,7 @@
                 <h4>View Transactions</h4>
             </div>
             <div class="card-body">
-                <table class="table">
+                <table id="transactionTable" class="table">
                     <thead>
                         <tr>
                             <th scope="col">From</th>
@@ -64,7 +64,7 @@
                     <% @transactions.each do  |transaction|%>
                         <% if transaction.sender_name == @user.username%>
                             <tr>
-                            <th scope="row"><%= @user.accounts.find(transaction.sender_id).account_name%></th>
+                            <th scope="row"><%= @user.accounts.find(transaction.sender_id).account_name %></th>
                             <td><%= transaction.receiver_name%></th>
                             <td>Sent <%= number_to_currency(transaction.amount, unit: "£")%></th>
                             <td><%= transaction.reference%></th>

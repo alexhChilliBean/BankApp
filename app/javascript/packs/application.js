@@ -11,3 +11,8 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// Basic example
+$(document).ready( function () {
+    $('#transactionTable').DataTable();
+} );
