@@ -64,17 +64,17 @@
                     <% @transactions.each do  |transaction|%>
                         <% if transaction.sender_name == @user.username%>
                             <tr>
-                            <th scope="row"><%= transaction.sender_id %></th>
+                            <th scope="row"><%= @user.accounts.find(transaction.sender_id).account_name%></th>
                             <td><%= transaction.receiver_name%></th>
-                            <td><%= transaction.amount%></th>
+                            <td>Sent <%= number_to_currency(transaction.amount, unit: "£")%></th>
                             <td><%= transaction.reference%></th>
                             </tr>
                         <%end%>
                         <% if transaction.receiver_name == @user.username%>
                             <tr>
                             <th scope="row"><%= transaction.receiver_name%></th>
-                            <td><%= transaction.sender_id %></th>
-                            <td><%= transaction.amount%></th>
+                            <td><%= @user.accounts.find(transaction.sender_id).account_name%></th>
+                            <td> Received <%= number_to_currency(transaction.amount, unit: "£")%></th>
                             <td><%= transaction.reference%></th>
                             </tr>
                         <%end%>
