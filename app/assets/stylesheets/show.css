@@ -63,6 +63,7 @@ body {
 }
 
 .newact {
+    margin-top: 1%;
     font-size: 16pt;
     float: right;
     text-decoration: none;
@@ -73,4 +74,23 @@ body {
 .newact:hover {
     color: black;
     text-shadow: none;
+}
+
+.dropdown {
+    float: right;
+    
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    text-align: center;
+    justify-content: center;
+}
+
+.select {
+    font-weight: 500;
+    font-size: 18pt;
+    margin-top: 10%;
+    justify-content: center;
 }

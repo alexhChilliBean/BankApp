@@ -28,7 +28,7 @@
                         <label class="form-label">Account </label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <%= transaction.number_field :amount, class:"form-control form-control-lg", required: true%>
+                        <%= transaction.number_field :amount, step: :any, class:"form-control form-control-lg", required: true%>
                         <label class="form-label">Amount (£) </label>
                     </div>
                     <div cass="form-outline form-white mb-4">
