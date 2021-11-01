@@ -19,7 +19,7 @@
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li>Close Account</li>
+                                <li><%=link_to "Close Account", user_account_path(account),method: :delete %></li>
                             </ul>
                         </div> 
                     </h5>
@@ -74,16 +74,14 @@
                         <% if transaction.sender_name == @user.username%>
                             <tr>
                             <th scope="row"><%= @user.accounts.find(transaction.sender_id).account_name %></th>
-                            <%=flash[:error] = "Sort it out"%>
                             <td><%= transaction.receiver_name%></th>
                             <td>Sent <%= number_to_currency(transaction.amount, unit: "£")%></th>
                             <td><%= transaction.reference%></th>
                             </tr>
-                        <%end%>
-                        <% if transaction.receiver_name == @user.username%>
+                        <% else %>
                             <tr>
                             <th scope="row"><%= transaction.receiver_name%></th>
-                            <td><%= @user.accounts.find(transaction.sender_id).account_name %></th>
+                            <td><%= transaction.receiver_act %></th>
                             <td> Received <%= number_to_currency(transaction.amount, unit: "£")%></th>
                             <td><%= transaction.reference%></th>
                             </tr>
