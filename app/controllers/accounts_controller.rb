@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
     
     def destroy
         
-        @account = Account.find(params[:account_id])
+        @account = Account.find(params[:id])
         if @account.destroy
             flash[:notice] ="Account Deleted"
             redirect_to root_path
