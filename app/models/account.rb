@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+    acts_as_paranoid
     belongs_to :user
     has_many :transactions
     validates :account_name, :account_no, :balance, presence: true

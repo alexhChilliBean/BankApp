@@ -19,7 +19,7 @@
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><%=link_to "Close Account", user_account_path(account),method: :delete %></li>
+                                <li><%=link_to "Close Account", user_account_path(@user, account),method: :delete %></li>
                             </ul>
                         </div> 
                     </h5>
@@ -73,7 +73,7 @@
                     <% @transactions.each do  |transaction|%>
                         <% if transaction.sender_name == @user.username%>
                             <tr>
-                            <th scope="row"><%= @user.accounts.find(transaction.sender_id).account_name %></th>
+                            <th scope="row"><%= @user.accounts.with_deleted.find(transaction.sender_id).account_name %></th>
                             <td><%= transaction.receiver_name%></th>
                             <td>Sent <%= number_to_currency(transaction.amount, unit: "£")%></th>
                             <td><%= transaction.reference%></th>
