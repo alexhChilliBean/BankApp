@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'new_transaction'%>
+<%= stylesheet_link_tag 'new_login'%>
 <section class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,26 +11,26 @@
               <br>
               <%= form_for @user do |f| %>
               <div class="form-outline form-white mb-4">
-                <%= f.text_field :username, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">Username </label>
+          
+                <%= f.text_field :username, class:"form-control form-control-lg", placeholder: "Username", required: true%>
               </div>
               <div class="form-outline form-white mb-4">
-                <%= f.text_field :email, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">Email </label>
+               
+                <%= f.text_field :email, class:"form-control form-control-lg", placeholder: "Email Address", required: true%> 
               </div>
               <div class="form-outline form-white mb-4">
-                <%= f.text_field :first_name, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">First name </label>
+             
+                <%= f.text_field :first_name, class:"form-control form-control-lg",  placeholder: "First Name", required: true%>
               </div>
               <div class="form-outline form-white mb-4">
-                <%= f.text_field :last_name, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">Surname </label>
+            
+                <%= f.text_field :last_name, class:"form-control form-control-lg",  placeholder: "Surname", required: true%>
               </div>
               <div class="form-outline form-white mb-4">
-                <%= f.password_field :password, class:"form-control form-control-lg", required: true%>
-                <label class="form-label">Password</label>
+               
+                <%= f.password_field :password, class:"form-control form-control-lg",  placeholder: "Password", required: true%>
               </div>
-                <%= f.submit "Create Account", class:"btn btn-outline-light btn-lg px-5" %>
+                <%= f.submit "Create Account", confirm: "Are your details entered correctly?", class:"btn btn-outline-light btn-lg px-5" %>
             </div>
             <div>
             </div>

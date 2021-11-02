@@ -11,24 +11,24 @@
                 <br>
                 <%= form_for [@user, @transaction] do |transaction| %>
                     <div class="form-outline form-white mb-4">
-                        <%= transaction.text_field :receiver_name, class:"form-control form-control-lg", required: true%>
                         <label class="form-label">Username </label>
+                        <%= transaction.text_field :receiver_name, class:"form-control form-control-lg", required: true%>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <%= transaction.select :receiver_act,["Savings ISA", "Current Account", "Bond"], {}, class:"form-control form-control-lg", required: true%>
-                        <label class="form-label">Account </label>
+                      <label class="form-label">Account </label>
+                      <%= transaction.select :receiver_act,["Savings ISA", "Current Account", "Bond"], {},  class:"form-control form-control-lg", required: true%>   
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <%= transaction.number_field :amount, step: :any, class:"form-control form-control-lg", required: true%>
-                        <label class="form-label">Amount (£) </label>
+                      <label class="form-label">Amount (£) </label>
+                      <%= transaction.number_field :amount,placeholder: "0.00", :step => "0.01", class:"form-control form-control-lg", required: true%>  
                     </div>
                     <div cass="form-outline form-white mb-4">
-                        <%= transaction.text_field :reference, class:"form-control form-control-lg", required: true%>
-                        <label class="form-label">Reference</label>
+                      <label class="form-label">Reference</label>
+                      <%= transaction.text_field :reference, class:"form-control form-control-lg", required: true%>  
                     </div>
                       <%= transaction.hidden_field :sender_id, value: @account.id %>
                       <%= transaction.hidden_field :sender_name, value: @user.username %>
-                    <%= transaction.submit "Complete Transaction", data: {confirm: "Are you sure?"}, class:"btn btn-outline-light btn-lg px-5" %>
+                    <%= transaction.submit "Complete Transaction", data: {confirm: "Are you sure details are correct?"}, class:"btn btn-outline-light btn-lg px-5" %>
                 <% end %>
             </div>
           </div>

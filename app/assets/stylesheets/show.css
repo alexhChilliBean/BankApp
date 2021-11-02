@@ -3,6 +3,11 @@ body {
     background-color: #AB83BF;
     
 }
+
+.card {
+    min-height: 50%;
+}
+
 .user {
     font-size: 35px;
     font-family: 'Montserrat', sans-serif;
@@ -86,6 +91,11 @@ body {
     border: none;
     text-align: center;
     justify-content: center;
+}
+
+.btn-light {
+    color: rgba(191, 85, 236, 1);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .select {

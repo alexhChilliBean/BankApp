@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_165154) do
+ActiveRecord::Schema.define(version: 2021_11_02_160414) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "account_no"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_11_01_165154) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "reference"
-    t.integer "amount"
+    t.float "amount"
     t.integer "accounts_id"
     t.integer "users_id"
     t.datetime "created_at", precision: 6, null: false
