@@ -13,13 +13,13 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
-    
-
-
+    </head>
+ 
+  
+  <body>
     <nav class="navbar navbar-expand-lg navbar-light">
       <a href="/" class="navbar-brand">
-       <%= image_tag "pig_logo.svg", alt:"Logo", width:100 , height:60, class:"d-inline-block align-top" %>
+        <%= image_tag "pig_logo.svg", alt:"Logo", width:100 , height:60, class:"d-inline-block align-top" %>
       </a>
       <button
         class="navbar-toggler"
@@ -34,27 +34,21 @@
       </button>
       <div class="collapse navbar-collapse" id="toggleMobileMenu">
         <ul class="navbar-nav ms-auto text-center">
-          
-            <% if session[:user_id] %>
-              <li class="nav-link">
-                <%= link_to "Account Hub", user_url(current_user.id), class:"link" %>
-              </li>
-              <li class="nav-link">
-                <%= link_to "Logout", logout_url, method:"delete", class:"link"%>
-              </li>
-             
-            <% else %>
-              <li class="nav-link">
-                <%= link_to "Login", login_url, class:"link" %>
-              </li>
-            <% end %>
-          
+          <% if session[:user_id] %>
+            <li class="nav-link">
+              <%= link_to "Account Hub", user_url(current_user.id), class:"link" %>
+            </li>
+            <li class="nav-link">
+              <%= link_to "Logout", logout_url, method:"delete", class:"link"%>
+            </li>
+          <% else %>
+            <li class="nav-link">
+              <%= link_to "Login", login_url, class:"link" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
- 
-  
-  <body>
     <% flash.each do |type, msg| %>  
         <% if type == "notice" %>
           <div class="alert alert-info">    
