@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
+            #UserMailer.welcome_email(@user).deliver_now
             session[:user_id] = @user.id
             flash[:success] = "Account Created"
             redirect_to root_path
@@ -22,11 +23,19 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @accounts = @user.accounts
+        @transaction = Transaction.new
+        @transactions = Transaction.all
     end
 
+    def new_transaction
+        @user=User.find(params[:id])
+        redirect_to new_user_transaction(@user.id)
+    end
+
+  
     private
     def user_params
-        params.require(:user).permit(:username, :password, :first_name, :last_name)
+        params.require(:user).permit(:username, :password, :first_name, :last_name, :email)
     end
 
     def check_login

@@ -3,6 +3,11 @@ body {
     background-color: #AB83BF;
     
 }
+
+.card {
+    min-height: 50%;
+}
+
 .user {
     font-size: 35px;
     font-family: 'Montserrat', sans-serif;
@@ -63,6 +68,7 @@ body {
 }
 
 .newact {
+    margin-top: 1%;
     font-size: 16pt;
     float: right;
     text-decoration: none;
@@ -73,4 +79,28 @@ body {
 .newact:hover {
     color: black;
     text-shadow: none;
+}
+
+.dropdown {
+    float: right;
+    
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    text-align: center;
+    justify-content: center;
+}
+
+.btn-light {
+    color: rgba(191, 85, 236, 1);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.select {
+    font-weight: 500;
+    font-size: 18pt;
+    margin-top: 10%;
+    justify-content: center;
 }

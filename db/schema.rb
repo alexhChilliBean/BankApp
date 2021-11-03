@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_153336) do
+ActiveRecord::Schema.define(version: 2021_11_02_160414) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "account_no"
@@ -19,7 +19,24 @@ ActiveRecord::Schema.define(version: 2021_10_13_153336) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "account_name"
     t.integer "user_id", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_accounts_on_deleted_at"
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "reference"
+    t.float "amount"
+    t.integer "accounts_id"
+    t.integer "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "sender_id"
+    t.string "receiver_name"
+    t.string "receiver_act"
+    t.string "sender_name"
+    t.index ["accounts_id"], name: "index_transactions_on_accounts_id"
+    t.index ["users_id"], name: "index_transactions_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_153336) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "email"
   end
 
   add_foreign_key "accounts", "users"

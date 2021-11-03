@@ -19,6 +19,18 @@ class AccountsController < ApplicationController
         end
     end
 
+    
+    def destroy
+        
+        @account = Account.find(params[:id])
+        if @account.destroy
+            flash[:notice] ="Account Deleted"
+            redirect_to root_path
+        else
+            flash[:error]="Failed to delete account"
+        end
+    end
+
     private
     def account_params
         params.require(:account).permit(:balance, :account_name, :user_id)
