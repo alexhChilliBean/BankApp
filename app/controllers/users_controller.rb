@@ -22,8 +22,16 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @accounts = @user.accounts
+        @transaction = Transaction.new
+        @transactions = Transaction.all
     end
 
+    def new_transaction
+        @user=User.find(params[:id])
+        redirect_to new_user_transaction(@user.id)
+    end
+
+  
     private
     def user_params
         params.require(:user).permit(:username, :password, :first_name, :last_name)

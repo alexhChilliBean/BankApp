@@ -14,7 +14,16 @@
             </div>
             <% @accounts.each do |account| %>
                 <div class="card-body">
-                    <h5 class="actname"> <%= account.account_name%> </h5>
+                    <h5 class="actname"> <%= account.account_name%> 
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><%=link_to "Close Account", user_account_path(account),method: :delete %></li>
+                            </ul>
+                        </div> 
+                    </h5>
+                    
                     </br>
                     <h5 class="actbal"> Balance:  </h5> <h5 class="actbal2"><%= number_to_currency(account.balance, unit: "£")%></h5>
                     </br></br>
@@ -27,12 +36,16 @@
     </div>
     <div class="col-2"></div>
     <div class="col-4">
-        <div class ="card" style="widith: 18rem;">
+        <div class ="card">
             <div class="card-title">
-                <h4>Make a payment</h4>
+                <h4 class="title">Make a payment</h4>
+                <%=form_for @transaction, url: new_user_transaction_path(@user), method: :get  do |transaction|%>
+                   <div class="select"> From: <%=transaction.select(:sender_id, @accounts.collect {|a| [a.account_name, a.id]}, {}, required: true) %></div>
+                    <div class="btn"><%=transaction.submit%></div>
+                <%end%>
             </div>
             <div class="card-body">
-                <p>Make a payment</p>
+                
             </div>
         </div>
     </div>
@@ -48,7 +61,33 @@
                 <h4>View Transactions</h4>
             </div>
             <div class="card-body">
-                <p>Recent Transactions</p>
+                <table id="transactionTable" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Reference</th>
+                        </tr>
+                    </thead>
+                    <% @transactions.each do  |transaction|%>
+                        <% if transaction.sender_name == @user.username%>
+                            <tr>
+                            <th scope="row"><%= @user.accounts.find(transaction.sender_id).account_name %></th>
+                            <td><%= transaction.receiver_name%></th>
+                            <td>Sent <%= number_to_currency(transaction.amount, unit: "£")%></th>
+                            <td><%= transaction.reference%></th>
+                            </tr>
+                        <% else %>
+                            <tr>
+                            <th scope="row"><%= transaction.receiver_name%></th>
+                            <td><%= transaction.receiver_act %></th>
+                            <td> Received <%= number_to_currency(transaction.amount, unit: "£")%></th>
+                            <td><%= transaction.reference%></th>
+                            </tr>
+                        <%end%>
+                    <%end%>
+                </table>
             </div>
         </div>
     </div>
