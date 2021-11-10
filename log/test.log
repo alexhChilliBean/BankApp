@@ -1,0 +1,74 @@
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "accounts"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "account_no" integer, "balance" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "account_name" varchar, "user_id" integer NOT NULL, "deleted_at" datetime)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_accounts_on_deleted_at" ON "accounts" ("deleted_at")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_accounts_on_user_id" ON "accounts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "transactions"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "reference" varchar, "amount" float, "accounts_id" integer, "users_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "sender_id" varchar, "receiver_name" varchar, "receiver_act" varchar, "sender_name" varchar)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_accounts_id" ON "transactions" ("accounts_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_transactions_on_users_id" ON "transactions" ("users_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aaccounts" ("id" integer NOT NULL PRIMARY KEY, "account_no" integer DEFAULT NULL, "balance" float DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "account_name" varchar DEFAULT NULL, "user_id" integer NOT NULL, "deleted_at" datetime DEFAULT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_aaccounts_on_user_id" ON "aaccounts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "tindex_aaccounts_on_deleted_at" ON "aaccounts" ("deleted_at")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aaccounts" ("id","account_no","balance","created_at","updated_at","account_name","user_id","deleted_at")
+                     SELECT "id","account_no","balance","created_at","updated_at","account_name","user_id","deleted_at" FROM "accounts"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "accounts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" integer NOT NULL PRIMARY KEY, "account_no" integer DEFAULT NULL, "balance" float DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "account_name" varchar DEFAULT NULL, "user_id" integer NOT NULL, "deleted_at" datetime DEFAULT NULL, CONSTRAINT "fk_rails_b1e30bebc8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_accounts_on_deleted_at" ON "accounts" ("deleted_at")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_accounts_on_user_id" ON "accounts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "accounts" ("id","account_no","balance","created_at","updated_at","account_name","user_id","deleted_at")
+                     SELECT "id","account_no","balance","created_at","updated_at","account_name","user_id","deleted_at" FROM "aaccounts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "aaccounts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211102160414)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20211008125247),
+(20211011110418),
+(20211011110441),
+(20211012154213),
+(20211013113410),
+(20211013153336),
+(20211014145510),
+(20211014155305),
+(20211021103235),
+(20211025150328);
+
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2021-11-10 11:13:50.020066"], ["updated_at", "2021-11-10 11:13:50.020066"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "d97c63df19afd692b16c04f8c2ba79e328602533"], ["created_at", "2021-11-10 11:13:50.021357"], ["updated_at", "2021-11-10 11:13:50.021357"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "user1"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at", "first_name", "last_name") VALUES (?, ?, ?, ?, ?, ?)[0m  [["username", "user1"], ["password_digest", "$2a$04$ADbuw8i3mmX.D8Zwrz8dEu.bTPL8qu6fJsu9hlsQrh13F/zCaebSS"], ["created_at", "2021-11-10 11:13:50.045824"], ["updated_at", "2021-11-10 11:13:50.045824"], ["first_name", "Alex"], ["last_name", "Holmes"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? AND "users"."id" != ? LIMIT ?[0m  [["username", "user1"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
