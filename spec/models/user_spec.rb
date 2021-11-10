@@ -6,5 +6,8 @@ RSpec.describe User, type: :model do
             user = FactoryBot.create(:user)
             expect(user.save).to eq(true)
         end
+
+        it { should validate_presence_of(:first_name) }
+
     end
 end
