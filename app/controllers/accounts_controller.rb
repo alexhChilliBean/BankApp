@@ -14,20 +14,20 @@ class AccountsController < ApplicationController
             flash[:success] = "New Account Opened"
             return redirect_to user_url(@user.id)
         else
-            flash[:error] = @account.errors.full_messages
+            flash[:notice] = "Account did not open"
             render 'new'
         end
     end
 
     
     def destroy
-        
-        @account = Account.find(params[:account_id])
+        puts "*" *100
+        @account = Account.find(params[:id])
         if @account.destroy
             flash[:notice] ="Account Deleted"
             redirect_to root_path
         else
-            flash[:error]="Failed to delete account"
+            flash[:danger]="Failed to delete account"
         end
     end
 
